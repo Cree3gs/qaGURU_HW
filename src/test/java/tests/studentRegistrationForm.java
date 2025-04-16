@@ -26,7 +26,7 @@ public class studentRegistrationForm {
         $("#firstName").setValue("Владимир");
         $("#lastName").setValue("Солнышко");
         $("#userEmail").setValue("killer123@ya.ru");
-        $("label[for=gender-radio-1]").click();
+        $$("label").findBy(text("Male")).click();
         $("#userNumber").setValue("9000000000");
 
         //дата рождения
@@ -41,8 +41,8 @@ public class studentRegistrationForm {
         $("#subjectsInput").setValue("ec").pressEnter();
 
         //Хобби
-        $("label[for=hobbies-checkbox-2]").click();
-        $("label[for=hobbies-checkbox-3]").click();
+        $$("label").findBy(text("Reading")).click();
+        $$("label").findBy(text("Music")).click();
 
         //Загрузка картинки
         $("#uploadPicture").uploadFromClasspath("photo.jpg");
