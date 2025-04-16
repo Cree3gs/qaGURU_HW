@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
@@ -26,7 +25,7 @@ public class studentRegistrationForm {
         $("#firstName").setValue("Владимир");
         $("#lastName").setValue("Солнышко");
         $("#userEmail").setValue("killer123@ya.ru");
-        $$("label").findBy(text("Male")).click();
+        $$("#genterWrapper").findBy(text("Male")).click();
         $("#userNumber").setValue("9000000000");
 
         //дата рождения
@@ -41,8 +40,8 @@ public class studentRegistrationForm {
         $("#subjectsInput").setValue("ec").pressEnter();
 
         //Хобби
-        $$("label").findBy(text("Reading")).click();
-        $$("label").findBy(text("Music")).click();
+        $$("#hobbiesWrapper").findBy(text("Reading")).click();
+        $$("#hobbiesWrapper").findBy(text("Music")).click();
 
         //Загрузка картинки
         $("#uploadPicture").uploadFromClasspath("photo.jpg");
