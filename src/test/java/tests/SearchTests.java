@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class searchTests {
+public class SearchTests {
     @Test
     void duckDuckGoSearchTest3() {
         open("https://duckduckgo.com/");
