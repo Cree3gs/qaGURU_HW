@@ -6,9 +6,11 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.DragAndDropOptions.to;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.actions;
 import static com.codeborne.selenide.Selenide.open;
 
 public class GithubSelenideTest {
@@ -58,4 +60,30 @@ public class GithubSelenideTest {
                 "} " +
                 "}"));
     }
+
+    @Test
+    void openEnterprizePageUsingTheHoverCommandTest () {
+        open("https://github.com/");
+        $$(".HeaderMenu-link").findBy(text ("Solutions")).hover();
+        $("a[href='https://github.com/enterprise']").click();
+        $("#hero-section-brand-heading").shouldHave(text("The AI-powered developer platform"));
+    }
+
+    @Test
+    void dragAndDropSelenideActionTest () {
+        open("https://the-internet.herokuapp.com/drag_and_drop");
+        actions().moveToElement($("#column-a"))
+                 .clickAndHold()
+                 .moveToElement($("#column-b"))
+                 .release()
+                 .perform();
+        $("#column-b header").shouldHave(text("A"));
+        }
+
+        @Test
+        void dragAndDropTest() {
+            open("https://the-internet.herokuapp.com/drag_and_drop");
+            $("#column-b").dragAndDrop(to($("#column-a")));
+            $("#column-a header").shouldHave(text("B"));
+        }
 }
