@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.ResultTable;
 import pages.components.UploadPicture;
 
 import static com.codeborne.selenide.Condition.empty;
@@ -13,7 +14,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class RegistrationPage {
 
-    private SelenideElement
+    private final SelenideElement
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
@@ -28,6 +29,7 @@ public class RegistrationPage {
             submitButton = $(".text-right");
 
     CalendarComponent calendarComponent = new CalendarComponent();
+    ResultTable resultTable = new ResultTable();
     UploadPicture uploadPicture = new UploadPicture();
 
     public RegistrationPage openPage() {
@@ -104,7 +106,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage checkResult(String key, String value) {
-        $$("table").findBy(text(key)).shouldHave(text(value));
+        resultTable.checkResult(key, value);
         return this;
     }
 
