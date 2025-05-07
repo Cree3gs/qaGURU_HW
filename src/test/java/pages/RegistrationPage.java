@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class RegistrationPage {
@@ -18,7 +17,7 @@ public class RegistrationPage {
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
-            genterInput = $("#genterWrapper"),
+            genderInput = $("#genterWrapper"),
             phoneNumberInput = $("#userNumber"),
             dateOfBirthInput = $("#dateOfBirthInput"),
             subjectsInput = $("#subjectsInput"),
@@ -37,7 +36,7 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setFirsName (String value) {
+    public RegistrationPage setFirstName (String value) {
         firstNameInput.setValue(value);
         return this;
     }
@@ -53,7 +52,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setGender (String value) {
-        genterInput.$(byText(value)).click();
+        genderInput.$(byText(value)).click();
         return this;
     }
 

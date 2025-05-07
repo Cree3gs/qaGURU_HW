@@ -7,47 +7,40 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+import static tests.TestData.*;
+
 public class RegistrationFormTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
-
-    String name = "Владимир";
-    String lastName = "Солнышко";
-    String email = "killer123@ya.ru";
-    String userSex = "Male";
-    String userNumber = "9000000000";
 
     @Test
     public void successfulRegistrationFullFormTest() {
         registrationPage
                 .openPage()
-                .setFirsName(name)
+                .setFirstName(firstname)
                 .setLastName(lastName)
                 .setEmail(email)
-                .setGender(userSex)
-                .setPhoneNumber(userNumber)
-                .setDateOfBirth("31", "December", "1990")
-                .setSubjects("ph")
-                .setSubjects("mat")
-                .setSubjects("ec")
-                .setHobbies("Reading")
-                .setHobbies("Music")
-                .uploadProfilePhoto("photo.jpg")
-                .setAddress("Платформа 9 и 3/4")
-                .setState("Rajasthan")
-                .setCity("Jaipur")
+                .setGender(gender)
+                .setPhoneNumber(phoneNumber)
+                .setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
+                .setSubjects(subjects)
+                .setHobbies(hobbies)
+                .uploadProfilePhoto(photo)
+                .setAddress(address)
+                .setState(state)
+                .setCity(city(state))
                 .clickSubmit()
                 .checkResult("Label","Values")
-                .checkResult("Student Name",name + " " + lastName)
+                .checkResult("Student Name", firstname + " " + lastName)
                 .checkResult("Student Email",email)
-                .checkResult("Gender",userSex)
-                .checkResult("Mobile",userNumber)
-                .checkResult("Date of Birth","31 December,1990")
-                .checkResult("Subjects","Physics, Maths, Economics")
-                .checkResult("Hobbies","Reading, Music")
-                .checkResult("Picture","photo.jpg")
-                .checkResult("Address","Платформа 9 и 3/4")
-                .checkResult("State and City","Rajasthan Jaipur");
+                .checkResult("Gender",gender)
+                .checkResult("Mobile",phoneNumber)
+                .checkResult("Date of Birth", dayOfBirth+" "+monthOfBirth+","+yearOfBirth)
+                .checkResult("Subjects",subjects)
+                .checkResult("Hobbies",hobbies)
+                .checkResult("Picture",photo)
+                .checkResult("Address",address)
+                .checkResult("State and City", state + " " + city(state));
     }
 
     @Test
@@ -57,16 +50,16 @@ public class RegistrationFormTests extends TestBase {
 
         registrationPage
                 .openPage()
-                .setFirsName(name)
+                .setFirstName(firstname)
                 .setLastName(lastName)
-                .setGender(userSex)
-                .setPhoneNumber(userNumber)
+                .setGender(gender)
+                .setPhoneNumber(phoneNumber)
                 .clickSubmit()
                 .checkResult("Label","Values")
-                .checkResult("Student Name",name + " " + lastName)
+                .checkResult("Student Name", firstname + " " + lastName)
                 .checkResultEmptyField("Student Email")
-                .checkResult("Gender",userSex)
-                .checkResult("Mobile",userNumber)
+                .checkResult("Gender", gender)
+                .checkResult("Mobile", phoneNumber)
                 .checkResult("Date of Birth", formattedDate)
                 .checkResultEmptyField("Subjects")
                 .checkResultEmptyField("Hobbies")
@@ -79,10 +72,10 @@ public class RegistrationFormTests extends TestBase {
     public void registrationFormInvalidPhoneNumberTest() {
         registrationPage
                 .openPage()
-                .setFirsName(name)
+                .setFirstName(firstname)
                 .setLastName(lastName)
                 .setEmail(email)
-                .setGender(userSex)
+                .setGender(gender)
                 .setPhoneNumber("900000000")
                 .clickSubmit()
                 .checkUnsubmitedForm();
@@ -92,10 +85,10 @@ public class RegistrationFormTests extends TestBase {
     public void registrationFormGenderNotSelectedTest() {
         registrationPage
                 .openPage()
-                .setFirsName(name)
+                .setFirstName(firstname)
                 .setLastName(lastName)
                 .setEmail(email)
-                .setPhoneNumber(userNumber)
+                .setPhoneNumber(phoneNumber)
                 .clickSubmit()
                 .checkUnsubmitedForm();
     }
@@ -104,11 +97,11 @@ public class RegistrationFormTests extends TestBase {
     public void registrationFormInvalidEmailTest() {
         registrationPage
                 .openPage()
-                .setFirsName(name)
+                .setFirstName(firstname)
                 .setLastName(lastName)
                 .setEmail("782476r82736823")
-                .setGender(userSex)
-                .setPhoneNumber(userNumber)
+                .setGender(gender)
+                .setPhoneNumber(phoneNumber)
                 .clickSubmit()
                 .checkUnsubmitedForm();
     }
@@ -119,8 +112,8 @@ public class RegistrationFormTests extends TestBase {
                 .openPage()
                 .setLastName(lastName)
                 .setEmail(email)
-                .setGender(userSex)
-                .setPhoneNumber(userNumber)
+                .setGender(gender)
+                .setPhoneNumber(phoneNumber)
                 .clickSubmit()
                 .checkUnsubmitedForm();
     }
@@ -129,10 +122,10 @@ public class RegistrationFormTests extends TestBase {
     public void registrationFormMissLastNameTest() {
         registrationPage
                 .openPage()
-                .setFirsName(name)
+                .setFirstName(firstname)
                 .setEmail(email)
-                .setGender(userSex)
-                .setPhoneNumber(userNumber)
+                .setGender(gender)
+                .setPhoneNumber(phoneNumber)
                 .clickSubmit()
                 .checkUnsubmitedForm();
     }
