@@ -28,7 +28,7 @@ public class RegistrationFormTests extends TestBase {
                 .uploadProfilePhoto(photo)
                 .setAddress(address)
                 .setState(state)
-                .setCity(city(state))
+                .setCity(city)
                 .clickSubmit()
                 .checkResult("Label","Values")
                 .checkResult("Student Name", firstname + " " + lastName)
@@ -40,7 +40,7 @@ public class RegistrationFormTests extends TestBase {
                 .checkResult("Hobbies",hobbies)
                 .checkResult("Picture",photo)
                 .checkResult("Address",address)
-                .checkResult("State and City", state + " " + city(state));
+                .checkResult("State and City", state + " " + city);
     }
 
     @Test
