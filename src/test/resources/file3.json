@@ -1,0 +1,9 @@
+{
+    "key": "Host",
+    "value": "test-mobile.ru",
+	"info": {
+		"_postman_id": "97834104-e73d-49fa-b8b2-4484ce1187cd",
+		"name": "bcxl-integration-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	}
+}
