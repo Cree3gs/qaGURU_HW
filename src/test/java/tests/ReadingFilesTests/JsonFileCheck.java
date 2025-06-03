@@ -1,4 +1,4 @@
-package tests;
+package tests.ReadingFilesTests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.InputMessage;

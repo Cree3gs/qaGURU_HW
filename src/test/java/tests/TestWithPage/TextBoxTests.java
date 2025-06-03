@@ -1,9 +1,10 @@
-package tests;
+package tests.TestWithPage;
 
 import org.junit.jupiter.api.Test;
 import pages.TextBoxPage;
+import tests.TestBase;
 
-public class TextBoxTests extends TestBase{
+public class TextBoxTests extends TestBase {
 
     TextBoxPage textBoxPage = new TextBoxPage();
     String fullName = "Диана Арбенина";

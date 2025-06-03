@@ -1,4 +1,4 @@
-package tests;
+package tests.ParameterizedTests;
 
 import data.SortTabs;
 import org.junit.jupiter.params.ParameterizedTest;

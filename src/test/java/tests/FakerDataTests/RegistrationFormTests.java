@@ -1,13 +1,14 @@
-package tests;
+package tests.FakerDataTests;
 
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import tests.TestBase;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-import static tests.TestData.*;
+import static tests.FakerDataTests.TestData.*;
 
 public class RegistrationFormTests extends TestBase {
 

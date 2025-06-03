@@ -1,4 +1,4 @@
-package tests;
+package tests.SelenideTests;
 
 import org.junit.jupiter.api.Test;
 
