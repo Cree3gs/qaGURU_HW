@@ -52,52 +52,70 @@ public class ArchiveFilesCheck {
     @Test
     @DisplayName("Проверка чтения XLSX файла из Архива")
     void checkReadingXLSXFromArchive() throws Exception {
+        boolean xlsxFound = false;
+
         try (InputStream is = cl.getResourceAsStream("SOS.zip");
              ZipInputStream zip = new ZipInputStream(is)) {
             ZipEntry entry;
 
             while ((entry = zip.getNextEntry()) != null) {
                 if (entry.getName().endsWith(".xlsx")) {
-                    System.out.println("Found .xlsx file: " + entry.getName());
-                    XLS xlsx = new XLS(zip);
-                    String actualValue = xlsx.excel.getSheetAt(0).getRow(1).getCell(1).getStringCellValue();
-                    Assertions.assertEquals("La", actualValue);
+                    xlsxFound = true;
+                    System.out.println("Найден XLSX файл: " + entry.getName());
+
+                    try {
+                        XLS xlsx = new XLS(zip);
+                        String actualValue = xlsx.excel.getSheetAt(0).getRow(1).getCell(1).getStringCellValue();
+                        Assertions.assertEquals("La", actualValue,
+                                                "XLSX не содержит ожидаемый текст: " + actualValue);
+                    } catch (Exception e) {
+                        Assertions.fail("Ошибка парсинга XLSX: " + e.getMessage());
+                    }
                 }
             }
+            Assertions.assertTrue(xlsxFound, "В архиве не найден XLSX-файл");
         }
     }
 
     @Test
     @DisplayName("Проверка чтения CSV файла из Архива")
     public void checkReadingCSVFromArchive() throws Exception {
+        boolean csvFound = false;
+
         try (InputStream is = cl.getResourceAsStream("SOS.zip");
              ZipInputStream zip = new ZipInputStream(is)) {
             ZipEntry entry;
 
             while ((entry = zip.getNextEntry()) != null) {
                 if (entry.getName().endsWith(".csv")) {
-                    System.out.println("Found .csv file: " + entry.getName());
+                    csvFound = true;
+                    System.out.println("Найден CSV файл: " + entry.getName());
 
-                    CSVReader csvReader = new CSVReader(new InputStreamReader(zip, StandardCharsets.UTF_8));
-                    List<String[]> data = csvReader.readAll();
-                    Assertions.assertEquals(3, data.size());
-                    Assertions.assertArrayEquals(
-                            new String[] {"Файл", "раз"},
-                            data.get(0),
-                            "Несоответствие в первой строке"
-                    );
-                    Assertions.assertArrayEquals(
-                            new String[]{"файл", "двас"},
-                            data.get(1),
-                            "Несоответствие во второй строке"
-                    );
-                    Assertions.assertArrayEquals(
-                            new String[]{"Файл", "трис"},
-                            data.get(2),
-                            "Несоответствие в третьей строке"
-                    );
+                    try {
+                        CSVReader csvReader = new CSVReader(new InputStreamReader(zip, StandardCharsets.UTF_8));
+                        List<String[]> data = csvReader.readAll();
+                        Assertions.assertEquals(3, data.size());
+                        Assertions.assertArrayEquals(
+                                new String[] {"Файл", "раз"},
+                                data.get(0),
+                                "Несоответствие в первой строке"
+                        );
+                        Assertions.assertArrayEquals(
+                                new String[]{"файл", "двас"},
+                                data.get(1),
+                                "Несоответствие во второй строке"
+                        );
+                        Assertions.assertArrayEquals(
+                                new String[]{"Файл", "трис"},
+                                data.get(2),
+                                "Несоответствие в третьей строке"
+                        );
+                    } catch (Exception e) {
+                        Assertions.fail("Ошибка парсинга CSV: " + e.getMessage());
                 }
             }
         }
+            Assertions.assertTrue(csvFound, "В архиве не найден CSV-файл");
     }
+}
 }
