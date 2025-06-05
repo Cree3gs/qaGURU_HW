@@ -32,6 +32,8 @@ public class AllureReportsTests {
     @Test
     @DisplayName("Построение Allure отчета с помощью Lambda steps для теста - Поиск Issue в проекте")
     public void issueSearchTestWithLambda() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+
         step("Открыть главную страницу", () ->
         open("https://github.com/"));
 
