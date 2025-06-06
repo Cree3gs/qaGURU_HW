@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static com.codeborne.selenide.Selenide.open;
 
 public class RegistrationPage {
@@ -35,6 +36,13 @@ public class RegistrationPage {
     @Step("Открыть automation-practice-form страницу")
     public RegistrationPage openPage() {
         open("/automation-practice-form");
+        return this;
+    }
+
+    @Step("Закрыть баннеры")
+    public RegistrationPage closeBanners() {
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         return this;
     }
 

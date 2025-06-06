@@ -22,6 +22,7 @@ public class RegistrationFormTests extends TestBase {
     public void successfulRegistrationFullFormTest() {
         registrationPage
                 .openPage()
+                .closeBanners()
                 .setFirstName(firstname)
                 .setLastName(lastName)
                 .setEmail(email)
@@ -56,6 +57,7 @@ public class RegistrationFormTests extends TestBase {
 
         registrationPage
                 .openPage()
+                .closeBanners()
                 .setFirstName(firstname)
                 .setLastName(lastName)
                 .setGender(gender)
@@ -79,6 +81,7 @@ public class RegistrationFormTests extends TestBase {
     public void registrationFormInvalidPhoneNumberTest() {
         registrationPage
                 .openPage()
+                .closeBanners()
                 .setFirstName(firstname)
                 .setLastName(lastName)
                 .setEmail(email)
@@ -93,6 +96,7 @@ public class RegistrationFormTests extends TestBase {
     public void registrationFormGenderNotSelectedTest() {
         registrationPage
                 .openPage()
+                .closeBanners()
                 .setFirstName(firstname)
                 .setLastName(lastName)
                 .setEmail(email)
@@ -106,6 +110,7 @@ public class RegistrationFormTests extends TestBase {
     public void registrationFormInvalidEmailTest() {
         registrationPage
                 .openPage()
+                .closeBanners()
                 .setFirstName(firstname)
                 .setLastName(lastName)
                 .setEmail("782476r82736823")
@@ -120,6 +125,7 @@ public class RegistrationFormTests extends TestBase {
     public void registrationFormMissFirsNameTest() {
         registrationPage
                 .openPage()
+                .closeBanners()
                 .setLastName(lastName)
                 .setEmail(email)
                 .setGender(gender)
@@ -133,6 +139,7 @@ public class RegistrationFormTests extends TestBase {
     public void registrationFormMissLastNameTest() {
         registrationPage
                 .openPage()
+                .closeBanners()
                 .setFirstName(firstname)
                 .setEmail(email)
                 .setGender(gender)
