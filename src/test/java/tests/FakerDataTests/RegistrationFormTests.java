@@ -1,5 +1,6 @@
 package tests.FakerDataTests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import tests.TestBase;
@@ -10,6 +11,7 @@ import java.util.Locale;
 
 import static tests.FakerDataTests.TestData.*;
 
+@Tag("demoqa")
 public class RegistrationFormTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
