@@ -1,5 +1,6 @@
 package tests.FakerDataTests;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
@@ -16,6 +17,7 @@ public class RegistrationFormTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
 
+    @DisplayName("Успешная отправка формы регистрации со всеми заполненными полями")
     @Test
     public void successfulRegistrationFullFormTest() {
         registrationPage
@@ -46,6 +48,7 @@ public class RegistrationFormTests extends TestBase {
                 .checkResult("State and City", state + " " + city);
     }
 
+    @DisplayName("Успешная отправка формы регистрации с заполненными обязательными полями")
     @Test
     public void successfulRegistrationShortFormTest() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM,yyyy", new Locale("en"));
@@ -71,6 +74,7 @@ public class RegistrationFormTests extends TestBase {
                 .checkResultEmptyField("State and City");
     }
 
+    @DisplayName("Попытка отправить форму с некорректным номером телефона")
     @Test
     public void registrationFormInvalidPhoneNumberTest() {
         registrationPage
@@ -84,6 +88,7 @@ public class RegistrationFormTests extends TestBase {
                 .checkUnsubmitedForm();
     }
 
+    @DisplayName("Попытка отправить форму с без выбранного пола")
     @Test
     public void registrationFormGenderNotSelectedTest() {
         registrationPage
@@ -96,6 +101,7 @@ public class RegistrationFormTests extends TestBase {
                 .checkUnsubmitedForm();
     }
 
+    @DisplayName("Попытка отправить форму с без выбранного пола")
     @Test
     public void registrationFormInvalidEmailTest() {
         registrationPage
@@ -109,6 +115,7 @@ public class RegistrationFormTests extends TestBase {
                 .checkUnsubmitedForm();
     }
 
+    @DisplayName("Попытка отправить форму без заполнения имени")
     @Test
     public void registrationFormMissFirsNameTest() {
         registrationPage
@@ -121,6 +128,7 @@ public class RegistrationFormTests extends TestBase {
                 .checkUnsubmitedForm();
     }
 
+    @DisplayName("Попытка отправить форму без заполнения фамилии")
     @Test
     public void registrationFormMissLastNameTest() {
         registrationPage
