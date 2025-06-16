@@ -11,16 +11,13 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.Map;
 
 public class TestBase {
-    private static final String SELENOID_URL = System.getProperty("selenoid.url");
-    private static final String SELENOID_LOGIN = System.getProperty("selenoid.login");;
-    private static final String SELENOID_PASSWORD = System.getProperty("selenoid.password");
 
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = System.getProperty("browser.size", "1920x1080");
         Configuration.browser = System.getProperty("browser", "chrome");
-        Configuration.browserVersion = System.getProperty("browser.version", "128.0");
+        Configuration.browserVersion = System.getProperty("browser.version", "115.0");
         Configuration.pageLoadStrategy = "eager";
         Configuration.timeout = 10000;
 
@@ -31,7 +28,12 @@ public class TestBase {
                 "enableVideo", true
         ));
         Configuration.browserCapabilities = capabilities;
-        Configuration.remote = "https://" + SELENOID_LOGIN + ":" + SELENOID_PASSWORD + "@" + SELENOID_URL + "/wd/hub";
+        Configuration.remote = String.format(
+                "https://%s:%s@%s/wd/hub",
+                System.getProperty("selenoidUserLogin", "user1"),
+                System.getProperty("selenoidUserPassword", "1234"),
+                System.getProperty("selenoidUrl", "selenoid.autotests.cloud")
+        );
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
