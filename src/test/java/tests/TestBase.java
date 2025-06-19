@@ -34,8 +34,6 @@ public class TestBase {
                 System.getProperty("selenoidUserPassword", "1234"),
                 System.getProperty("selenoidUrl", "selenoid.autotests.cloud")
         );
-
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @AfterEach
