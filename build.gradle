@@ -26,6 +26,8 @@ allure {
 
 dependencies {
     testImplementation(
+            'io.rest-assured:rest-assured:5.3.1',
+            "io.rest-assured:json-schema-validator:5.5.5",
             "com.codeborne:selenide:7.7.3",
             "com.github.javafaker:javafaker:1.0.2",
             "org.junit.jupiter:junit-jupiter:5.12.1",
@@ -68,4 +70,9 @@ task large_test(type: Test) {
     useJUnitPlatform {
         includeTags("large")
     }
+}
+task api_regress(type: Test) {
+        useJUnitPlatform {
+            includeTags("api")
+        }
 }
