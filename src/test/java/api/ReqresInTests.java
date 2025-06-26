@@ -1,5 +1,7 @@
 package api;
 
+import io.restassured.RestAssured;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -12,15 +14,23 @@ import static org.hamcrest.Matchers.matchesRegex;
 import static org.hamcrest.Matchers.notNullValue;
 
 
+
 @Tag("api")
 public class ReqresInTests {
 
+    @BeforeAll
+    static void setup() {
+        RestAssured.baseURI = "https://reqres.in";
+        RestAssured.basePath = "/api";
+    }
+
     @Test
-    void GetListUsers (){
+    void getListUsersTest (){
         given()
                 .log().all()
                 .header("x-api-key", "reqres-free-v1")
-                .get("https://reqres.in/api/users?page=2")
+                .queryParam("page", "2")
+                .get("/users")
                 .then()
                 .log().all()
                 .statusCode(200)
@@ -28,11 +38,11 @@ public class ReqresInTests {
     }
 
     @Test
-    void GetSingleUser (){
+    void getSingleUserTest (){
         given()
                 .log().all()
                 .header("x-api-key", "reqres-free-v1")
-                .get("https://reqres.in/api/users/2")
+                .get("/users/2")
                 .then()
                 .log().all()
                 .statusCode(200)
@@ -40,11 +50,11 @@ public class ReqresInTests {
     }
 
     @Test
-    void GetList (){
+    void getListTest (){
         given()
                 .log().all()
                 .header("x-api-key", "reqres-free-v1")
-                .get("https://reqres.in/api/unknown")
+                .get("/unknown")
                 .then()
                 .log().all()
                 .statusCode(200)
@@ -52,7 +62,7 @@ public class ReqresInTests {
     }
 
     @Test
-    void PostCreate (){
+    void postCreateTest (){
         String jsonData = "{\"name\": \"morpheus\", \"job\": \"leader\"}";
         given()
                 .body(jsonData)
@@ -60,7 +70,7 @@ public class ReqresInTests {
                 .log().all()
                 .when()
                 .header("x-api-key", "reqres-free-v1")
-                .post("https://reqres.in/api/users")
+                .post("/users")
                 .then()
                 .log().all()
                 .statusCode(201)
@@ -71,7 +81,7 @@ public class ReqresInTests {
     }
 
     @Test
-    void PatchUpdate (){
+    void patchUpdateTest (){
         String jsonData = "{\"name\": \"morpheus\", \"job\": \"zion resident\"}";
         given()
                 .body(jsonData)
@@ -79,7 +89,7 @@ public class ReqresInTests {
                 .log().all()
                 .when()
                 .header("x-api-key", "reqres-free-v1")
-                .patch("https://reqres.in/api/users/2")
+                .patch("/users/2")
                 .then()
                 .log().all()
                 .statusCode(200)
