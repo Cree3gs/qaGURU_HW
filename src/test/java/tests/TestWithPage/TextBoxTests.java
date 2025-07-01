@@ -13,7 +13,7 @@ public class TextBoxTests extends TestBase {
     String permanentAddress = "г. Москва, Битцевский лес, 3я- береза справа, прикоп";
 
     @Test
-    public void fillFormTest(){
+    public void fillFormTest() {
         textBoxPage.openPage()
                 .setUserName(fullName)
                 .setUserEmail(email)

@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id("io.qameta.allure") version '2.12.0'
+    id("io.freefair.lombok") version "8.6"
 }
 
 repositories {
@@ -27,6 +28,8 @@ allure {
 dependencies {
     testImplementation(
             'io.rest-assured:rest-assured:5.3.1',
+            'org.assertj:assertj-core:3.27.3',
+            "io.qameta.allure:allure-rest-assured:2.21.0",
             "io.rest-assured:json-schema-validator:5.5.5",
             "com.codeborne:selenide:7.7.3",
             "com.github.javafaker:javafaker:1.0.2",
@@ -40,6 +43,8 @@ dependencies {
             'io.qameta.allure:allure-selenide:2.25.0'
     )
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
 }
 
 tasks.withType(Test) {
@@ -72,7 +77,7 @@ task large_test(type: Test) {
     }
 }
 task api_regress(type: Test) {
-        useJUnitPlatform {
-            includeTags("api")
-        }
+    useJUnitPlatform {
+        includeTags("api")
+    }
 }

@@ -18,8 +18,9 @@ public class ArchiveFilesCheck {
 
     private ClassLoader cl = ArchiveFilesCheck.class.getClassLoader();
 
-@Test
-@DisplayName("Проверка чтения PDF файла из Архива") //ИИ тест
+    @Test
+    @DisplayName("Проверка чтения PDF файла из Архива")
+        //ИИ тест
     void checkReadingPDFFromArchive() throws Exception {
         boolean pdfFound = false;
         String expectedText = "weight, paddings, top, zero, left, zero, bottom, zero, right";
@@ -67,7 +68,7 @@ public class ArchiveFilesCheck {
                         XLS xlsx = new XLS(zip);
                         String actualValue = xlsx.excel.getSheetAt(0).getRow(1).getCell(1).getStringCellValue();
                         Assertions.assertEquals("La", actualValue,
-                                                "XLSX не содержит ожидаемый текст: " + actualValue);
+                                "XLSX не содержит ожидаемый текст: " + actualValue);
                     } catch (Exception e) {
                         Assertions.fail("Ошибка парсинга XLSX: " + e.getMessage());
                     }
@@ -96,7 +97,7 @@ public class ArchiveFilesCheck {
                         List<String[]> data = csvReader.readAll();
                         Assertions.assertEquals(3, data.size());
                         Assertions.assertArrayEquals(
-                                new String[] {"Файл", "раз"},
+                                new String[]{"Файл", "раз"},
                                 data.get(0),
                                 "Несоответствие в первой строке"
                         );
@@ -112,10 +113,10 @@ public class ArchiveFilesCheck {
                         );
                     } catch (Exception e) {
                         Assertions.fail("Ошибка парсинга CSV: " + e.getMessage());
+                    }
                 }
             }
-        }
             Assertions.assertTrue(csvFound, "В архиве не найден CSV-файл");
+        }
     }
-}
 }

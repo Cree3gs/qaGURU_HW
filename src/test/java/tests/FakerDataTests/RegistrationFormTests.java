@@ -1,8 +1,6 @@
 package tests.FakerDataTests;
 
-import com.codeborne.selenide.logevents.SelenideLogger;
-import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -18,10 +16,6 @@ import static tests.FakerDataTests.TestData.*;
 @Tag("demoqa")
 public class RegistrationFormTests extends TestBase {
 
-    @BeforeEach
-    public void beforeEach() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
-    };
 
     RegistrationPage registrationPage = new RegistrationPage();
 
@@ -44,16 +38,16 @@ public class RegistrationFormTests extends TestBase {
                 .setState(state)
                 .setCity(city)
                 .clickSubmit()
-                .checkResult("Label","Values")
+                .checkResult("Label", "Values")
                 .checkResult("Student Name", firstname + " " + lastName)
-                .checkResult("Student Email",email)
-                .checkResult("Gender",gender)
-                .checkResult("Mobile",phoneNumber)
-                .checkResult("Date of Birth", dayOfBirth+" "+monthOfBirth+","+yearOfBirth)
-                .checkResult("Subjects",subjects)
-                .checkResult("Hobbies",hobbies)
-                .checkResult("Picture",photo)
-                .checkResult("Address",address)
+                .checkResult("Student Email", email)
+                .checkResult("Gender", gender)
+                .checkResult("Mobile", phoneNumber)
+                .checkResult("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
+                .checkResult("Subjects", subjects)
+                .checkResult("Hobbies", hobbies)
+                .checkResult("Picture", photo)
+                .checkResult("Address", address)
                 .checkResult("State and City", state + " " + city);
     }
 
@@ -71,7 +65,7 @@ public class RegistrationFormTests extends TestBase {
                 .setGender(gender)
                 .setPhoneNumber(phoneNumber)
                 .clickSubmit()
-                .checkResult("Label","Values")
+                .checkResult("Label", "Values")
                 .checkResult("Student Name", firstname + " " + lastName)
                 .checkResultEmptyField("Student Email")
                 .checkResult("Gender", gender)

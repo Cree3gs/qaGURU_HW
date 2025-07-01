@@ -35,20 +35,20 @@ public class AllureReportsTests {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
         step("Открыть главную страницу", () ->
-        open("https://github.com/"));
+                open("https://github.com/"));
 
         step("С помощью поисковой строки найти репозиторий" + REPOSITORY, () -> {
-        $(".search-input").click();
-        $("#query-builder-test").setValue(REPOSITORY).pressEnter();
+            $(".search-input").click();
+            $("#query-builder-test").setValue(REPOSITORY).pressEnter();
         });
 
         step("Открыть репозиторий и перейти в Issues", () -> {
-                 $(linkText(REPOSITORY)).click();
-                 $("#issues-tab").click();
-             });
+            $(linkText(REPOSITORY)).click();
+            $("#issues-tab").click();
+        });
 
         step("Проверить наличие HW-10(TEST) в списке", () ->
-        $(".IssueRow-module__row--XmR1f").shouldHave(text(ISSUE_NAME)));
+                $(".IssueRow-module__row--XmR1f").shouldHave(text(ISSUE_NAME)));
     }
 
     @Test
@@ -57,8 +57,8 @@ public class AllureReportsTests {
         SelenideLogger.addListener("allure", new AllureSelenide());
         WebSteps steps = new WebSteps();
         steps.openMainPage()
-             .searchRepository(REPOSITORY)
-             .clickOnRepository(REPOSITORY)
-             .checkIssue(ISSUE_NAME);
+                .searchRepository(REPOSITORY)
+                .clickOnRepository(REPOSITORY)
+                .checkIssue(ISSUE_NAME);
     }
 }

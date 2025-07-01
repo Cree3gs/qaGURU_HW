@@ -39,7 +39,7 @@ public class RandomUtilsFromLesson {
     // +3 (263) 253 - 66 - 12
     public static String getRandomPhone() {
         return String.format("+%s (%s) %s - %s - %s", getRandomInt(1, 9), getRandomInt(111, 999),
-                             getRandomInt(111, 999), getRandomInt(11, 99), getRandomInt(11, 99));
+                getRandomInt(111, 999), getRandomInt(11, 99), getRandomInt(11, 99));
     }
 
     public static String getRandomGender() {

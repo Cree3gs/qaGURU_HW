@@ -1,9 +1,11 @@
 package selenide;
 
 import com.codeborne.selenide.*;
-import org.openqa.selenium.*;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.Keys;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.Duration;
 
 import static com.codeborne.selenide.CollectionCondition.*;
@@ -19,7 +21,7 @@ public class Snippets {
         open("https://google.com");
         open("/customer/orders");     // -Dselenide.baseUrl=http://123.23.23.1
         open("/", AuthenticationType.BASIC,
-             new BasicAuthCredentials("", "user", "password"));
+                new BasicAuthCredentials("", "user", "password"));
 
         Selenide.back();
         Selenide.refresh();

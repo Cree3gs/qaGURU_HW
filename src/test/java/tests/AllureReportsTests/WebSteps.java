@@ -10,7 +10,7 @@ import static org.openqa.selenium.By.linkText;
 public class WebSteps {
 
     @Step("Открыть главную страницу")
-public WebSteps openMainPage() {
+    public WebSteps openMainPage() {
         open("https://github.com/");
         return this;
     }

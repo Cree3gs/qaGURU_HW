@@ -9,9 +9,7 @@ import pages.components.UploadPicture;
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
 
@@ -47,82 +45,82 @@ public class RegistrationPage {
     }
 
     @Step("Ввести имя")
-    public RegistrationPage setFirstName (String value) {
+    public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
         return this;
     }
 
     @Step("Ввести фамилию")
-    public RegistrationPage setLastName (String value) {
+    public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
         return this;
     }
 
     @Step("Ввести адрес электронной почты")
-    public RegistrationPage setEmail (String value) {
+    public RegistrationPage setEmail(String value) {
         emailInput.setValue(value);
         return this;
     }
 
     @Step("Выбрать пол")
-    public RegistrationPage setGender (String value) {
+    public RegistrationPage setGender(String value) {
         genderInput.$(byText(value)).click();
         return this;
     }
 
     @Step("Ввести номер телефона")
-    public RegistrationPage setPhoneNumber (String value) {
+    public RegistrationPage setPhoneNumber(String value) {
         phoneNumberInput.setValue(value);
         return this;
     }
 
     @Step("Выбрать дату рождения")
-    public RegistrationPage setDateOfBirth (String day, String month, String year) {
+    public RegistrationPage setDateOfBirth(String day, String month, String year) {
         dateOfBirthInput.click();
         calendarComponent.setDate(day, month, year);
         return this;
     }
 
     @Step("Выбрать предметы")
-    public RegistrationPage setSubjects (String value) {
+    public RegistrationPage setSubjects(String value) {
         subjectsInput.setValue(value).pressEnter();
         return this;
     }
 
     @Step("Выбрать хобби")
-    public RegistrationPage setHobbies (String value) {
+    public RegistrationPage setHobbies(String value) {
         selectHobbies.$(byText(value)).click();
         return this;
     }
 
     @Step("Загрузить фото")
-    public RegistrationPage uploadProfilePhoto (String classpath) {
+    public RegistrationPage uploadProfilePhoto(String classpath) {
         uploadPicture.uploadPicture(classpath);
         return this;
     }
 
     @Step("Ввести адрес")
-    public RegistrationPage setAddress (String value) {
+    public RegistrationPage setAddress(String value) {
         addressInput.setValue(value);
         return this;
     }
 
     @Step("Выбрать штат")
-    public RegistrationPage setState (String value) {
+    public RegistrationPage setState(String value) {
         $("#state").click();
         stateInput.setValue(value).pressEnter();
         return this;
     }
 
     @Step("Выбрать город")
-    public RegistrationPage setCity (String value) {
+    public RegistrationPage setCity(String value) {
         $("#city").click();
         cityInput.setValue(value).pressEnter();
         return this;
     }
 
     @Step("Нажать кнопку отправки формы")
-    public RegistrationPage clickSubmit () {
+    public RegistrationPage clickSubmit() {
         submitButton.click();
         return this;
     }
@@ -134,7 +132,7 @@ public class RegistrationPage {
     }
 
     @Step("Проверка полей, которые должны оставаться пустыми")
-    public RegistrationPage checkResultEmptyField (String key) {
+    public RegistrationPage checkResultEmptyField(String key) {
         $("table").$(byText(key)).sibling(0).shouldBe(empty);
         return this;
     }

@@ -14,8 +14,8 @@ public class TextBoxPage {
             currentAddressInput = $("#currentAddress"),
             permanentAddressInput = $("#permanentAddress"),
             submitButton = $("#submit"),
-    userNameOutput = $("#output #name"),
-  userEmailOutput = $("#output #email"),
+            userNameOutput = $("#output #name"),
+            userEmailOutput = $("#output #email"),
             currentAddressOutput = $("#output #currentAddress"),
             permanentAddressOutput = $("#output #permanentAddress");
 
@@ -24,48 +24,48 @@ public class TextBoxPage {
         return this;
     }
 
-    public TextBoxPage setUserName (String value) {
+    public TextBoxPage setUserName(String value) {
         userNameInput.setValue(value);
         return this;
     }
 
-    public TextBoxPage setUserEmail (String value) {
+    public TextBoxPage setUserEmail(String value) {
         userEmailInput.setValue(value);
         return this;
     }
 
-    public TextBoxPage setCurrentAddress (String value) {
+    public TextBoxPage setCurrentAddress(String value) {
         currentAddressInput.setValue(value);
         return this;
     }
 
-    public TextBoxPage setPermanentAddress (String value) {
+    public TextBoxPage setPermanentAddress(String value) {
         permanentAddressInput.setValue(value);
         return this;
     }
 
-    public TextBoxPage clickSubmit () {
+    public TextBoxPage clickSubmit() {
         submitButton.click();
         return this;
     }
 
-    public TextBoxPage checkUserName (String value) {
+    public TextBoxPage checkUserName(String value) {
         userNameOutput.shouldHave(text(value));
         return this;
     }
 
-    public TextBoxPage checkUserEmail (String value) {
+    public TextBoxPage checkUserEmail(String value) {
         userEmailOutput.shouldHave(text(value));
         return this;
     }
 
-    public TextBoxPage checkCurrentAddress (String value) {
-     currentAddressOutput.shouldHave(text(value));
+    public TextBoxPage checkCurrentAddress(String value) {
+        currentAddressOutput.shouldHave(text(value));
         return this;
     }
 
-    public TextBoxPage checkPermanentAddress (String value) {
-     permanentAddressOutput.shouldHave(text(value));
+    public TextBoxPage checkPermanentAddress(String value) {
+        permanentAddressOutput.shouldHave(text(value));
         return this;
     }
 }

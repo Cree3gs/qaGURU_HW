@@ -5,6 +5,6 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class ResultTable {
     public void checkResult(String key, String value) {
-    $$("table").findBy(text(key)).shouldHave(text(value));
+        $$("table").findBy(text(key)).shouldHave(text(value));
     }
 }
