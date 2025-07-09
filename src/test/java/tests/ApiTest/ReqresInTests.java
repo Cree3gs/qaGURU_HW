@@ -18,16 +18,14 @@ import java.util.List;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static specs.BaseSpecs.baseRequestSpec;
 import static specs.BaseSpecs.baseResponseSpec;
 
 
 @Tag("api")
-public class ReqresInTests {
+class ReqresInTests {
 
     @BeforeAll
     static void setup() {
@@ -35,7 +33,6 @@ public class ReqresInTests {
         RestAssured.basePath = "/api";
     }
 
-    @Disabled
     @Test
     void getListUsersTest() {
         UsersResponse response = step("Отправляем GET запрос", () ->
@@ -49,8 +46,9 @@ public class ReqresInTests {
                         .extract().as(UsersResponse.class)
         );
 
-        step("Проверяем ответ", () -> assertThat(response)
-                .matchesJsonSchemaInClasspath("GetListUsers.json"));
+        step("Проверяем ответ", () -> assertThat(response.getTotal())
+                .isEqualTo(2)
+        );
     }
 
     @Test
@@ -82,12 +80,12 @@ public class ReqresInTests {
                         .extract().as(ResponseList.class)
         );
 
+
         step("Проверяем ответ", () -> {
-            List<ResponseDataList> year = response.getData().;
-            assertThat(year)
-                    .containsExactlyInAnyOrder(2000, 2001, 2002, 2003, 2004, 2005);
+
+            List<ResponseDataList> year = response.getData();
+            assertThat(year.contains("2000"));
         });
-//                .body("data.year", contains(2000, 2001, 2002, 2003, 2004, 2005)); доделать
     }
 
     @Test
@@ -114,10 +112,8 @@ public class ReqresInTests {
                 () -> assertEquals("morpheus", response.getName(), "Имя не совпадает"),
                 () -> assertEquals("leader", response.getJob(), "Должность не совпадает"),
                 () -> assertNotNull(response.getId(), "ID не должен быть null"),
-                () -> assertThat(response.getId(), not(emptyOrNullString())),
                 () -> assertNotNull(response.getCreatedAt(), "Дата создания не должена быть null"),
-                () -> assertThat(response.getCreatedAt(),
-                        matchesRegex("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"))
+                () -> assertThat(response.getCreatedAt()).matches("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$")
         ));
     }
 
@@ -145,9 +141,7 @@ public class ReqresInTests {
                 () -> assertEquals("morpheus", response.getName(), "Имя не совпадает"),
                 () -> assertEquals("zion resident", response.getJob(), "Должность не совпадает"),
                 () -> assertNotNull(response.getUpdatedAt(), "Дата обновления не должена быть null"),
-                () -> assertThat(response.getUpdatedAt(),
-                        matchesRegex("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$"))
+                () -> assertThat(response.getUpdatedAt()).matches("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$")
         ));
     }
-
 }

@@ -1,7 +1,7 @@
 plugins {
     id 'java-library'
     id("io.qameta.allure") version '2.12.0'
-    id("io.freefair.lombok") version "8.6"
+    id("io.freefair.lombok") version "8.13.1"
 }
 
 repositories {
@@ -27,24 +27,22 @@ allure {
 
 dependencies {
     testImplementation(
-            'io.rest-assured:rest-assured:5.3.1',
-            'org.assertj:assertj-core:3.27.3',
-            "io.qameta.allure:allure-rest-assured:2.21.0",
-            "io.rest-assured:json-schema-validator:5.5.5",
-            "com.codeborne:selenide:7.7.3",
-            "com.github.javafaker:javafaker:1.0.2",
-            "org.junit.jupiter:junit-jupiter:5.12.1",
+            'com.codeborne:selenide:7.7.3',
+            'org.junit.jupiter:junit-jupiter:5.12.1',
+            'org.slf4j:slf4j-simple:2.0.17',
+            'com.github.javafaker:javafaker:1.0.2',
+            'com.fasterxml.jackson.core:jackson-databind:2.18.2',
             'com.codeborne:pdf-test:1.5.0',
             'com.codeborne:xls-test:1.4.3',
-            'com.opencsv:opencsv:5.9',
-            'com.fasterxml.jackson.core:jackson-core:2.13.1',
-            'com.fasterxml.jackson.core:jackson-annotations:2.13.1',
-            'com.fasterxml.jackson.core:jackson-databind:2.14.1',
-            'io.qameta.allure:allure-selenide:2.25.0'
+            'com.opencsv:opencsv:5.11',
+            'org.assertj:assertj-core:3.27.3',
+            'io.qameta.allure:allure-selenide:2.21.0',
+            'io.rest-assured:rest-assured:5.5.5',
+            "io.rest-assured:json-schema-validator:5.5.5",
+            "io.qameta.allure:allure-rest-assured:2.21.0",
+            'io.qameta.allure:allure-attachments:2.21.0'
     )
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    compileOnly 'org.projectlombok:lombok:1.18.30'
-    annotationProcessor 'org.projectlombok:lombok:1.18.30'
 }
 
 tasks.withType(Test) {
