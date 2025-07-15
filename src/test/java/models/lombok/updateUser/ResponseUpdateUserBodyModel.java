@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class ResponseUpdateUserBodyModel {
-    String id, name, job, updatedAt;
+    String id, name, job, createdAt;
 }

@@ -9,10 +9,7 @@ import models.lombok.updateUser.RequestUpdateUserBodyModel;
 import models.lombok.updateUser.ResponseUpdateUserBodyModel;
 import models.lombok.user.UserResponse;
 import models.lombok.users.UsersResponse;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.List;
 
@@ -33,6 +30,7 @@ class ReqresInTests {
         RestAssured.basePath = "/api";
     }
 
+    @DisplayName("Проверка параметра total в GET запросе api/users")
     @Test
     void getListUsersTest() {
         UsersResponse response = step("Отправляем GET запрос", () ->
@@ -47,10 +45,11 @@ class ReqresInTests {
         );
 
         step("Проверяем ответ", () -> assertThat(response.getTotal())
-                .isEqualTo(2)
+                .isEqualTo(12)
         );
     }
 
+    @DisplayName("Проверка параметра id в GET запросе api/users/2")
     @Test
     void getSingleUserTest() {
         UserResponse response = step("Отправляем GET запрос", () ->
@@ -68,7 +67,7 @@ class ReqresInTests {
         });
     }
 
-    @Disabled
+    @DisplayName("Проверка параметра year в GET запросе api/unknown")
     @Test
     void getListTest() {
         ResponseList response = step("Отправляем GET запрос", () ->
@@ -88,6 +87,7 @@ class ReqresInTests {
         });
     }
 
+    @DisplayName("Проверка создания записи о пользователе POST запросом")
     @Test
     void postCreateTest() {
         RequestCreateUserBodyModel requestBody = step("Подготавливаем тестовые данные", () -> {
@@ -117,6 +117,7 @@ class ReqresInTests {
         ));
     }
 
+    @DisplayName("Проверка изменение записи о пользователе PATCH запросом")
     @Test
     void patchUpdateTest() {
         RequestUpdateUserBodyModel requestBody = step("Подготавливаем тестовые данные", () -> {
@@ -133,15 +134,15 @@ class ReqresInTests {
                         .when()
                         .post("/users/2")
                         .then()
-                        .spec(baseResponseSpec(200))
+                        .spec(baseResponseSpec(201))
                         .extract().as(ResponseUpdateUserBodyModel.class)
         );
 
         step("Проверяем ответ", () -> assertAll(
                 () -> assertEquals("morpheus", response.getName(), "Имя не совпадает"),
                 () -> assertEquals("zion resident", response.getJob(), "Должность не совпадает"),
-                () -> assertNotNull(response.getUpdatedAt(), "Дата обновления не должена быть null"),
-                () -> assertThat(response.getUpdatedAt()).matches("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$")
+                () -> assertNotNull(response.getCreatedAt(), "Дата создания не должена быть null"),
+                () -> assertThat(response.getCreatedAt()).matches("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}Z$")
         ));
     }
 }
